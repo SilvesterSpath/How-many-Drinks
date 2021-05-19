@@ -2,8 +2,9 @@ const smallCups = document.querySelectorAll('.cup-small');
 const liters = document.getElementById('liters');
 const percentage = document.getElementById('percentage');
 const remained = document.getElementById('remained');
+const small = document.getElementById('small');
 
-console.log(liters);
+console.log(small);
 
 smallCups.forEach((i, index) => {
   i.addEventListener('click', () => highlightCups(index));
@@ -33,5 +34,13 @@ function highlightCups(idx) {
     percentage.style.height = `0px`;
     liters.innerText = `2L`;
     percentage.style.visibility = 'hidden';
+  }
+
+  if (smallCups[7].classList.contains('full')) {
+    liters.innerText = 'Full!';
+    console.log(small);
+    small.style.visibility = 'hidden';
+  } else {
+    small.style.visibility = 'visible';
   }
 }
