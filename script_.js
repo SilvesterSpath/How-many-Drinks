@@ -28,18 +28,23 @@ function highlightCups(idx) {
 }
 
 function updateBigCup() {
-  const fullCups = document.querySelectorAll('.cup-small.full');
-  const NumberOfFullCups = fullCups.length;
-  console.log(typeof NumberOfFullCups);
-  if (NumberOfFullCups === 0) {
-    //console.log('hidden');
+  const fullCups = document.querySelectorAll('.cup-small.full').length;
+  const totalCups = smallCups.length;
+
+  if (fullCups === 0) {
     percentage.style.visibility = 'hidden';
     percentage.style.height = 0;
-    liters.innerText = `${2}L`;
+    //liters.innerText = `${2}L`;
   } else {
     percentage.style.visibility = 'visible';
-    percentage.innerText = `${NumberOfFullCups * 12.5}%`;
-    percentage.style.height = `${NumberOfFullCups * 35}px`;
-    liters.innerText = `${2 - NumberOfFullCups * 0.25}L`;
+    percentage.style.height = `${(fullCups / totalCups) * 330}px`;
+    percentage.innerText = `${(fullCups / totalCups) * 100}%`;
+    liters.innerText = `${2 - fullCups * 0.25}L`;
+  }
+  if (fullCups === totalCups) {
+    remained.style.visibility = 'hidden';
+    remained.style.height = 0;
+  } else {
+    remained.style.visibility = 'visible';
   }
 }

@@ -19,7 +19,7 @@ function highlightCups(idx) {
     if (idx2 <= idx) {
       item.classList.add('full');
       percentage.innerText = `${(idx + 1) * 12.5}%`;
-      percentage.style.height = `${(idx + 1) * 35}px`;
+      percentage.style.height = `${(idx + 1) * 41}px`;
       liters.innerText = `${2 - (idx + 1) * 0.25}L`;
       percentage.style.visibility = 'visible';
 
@@ -37,9 +37,9 @@ function highlightCups(idx) {
   }
 
   if (smallCups[7].classList.contains('full')) {
-    liters.innerText = 'Full!';
-    console.log(small);
     small.style.visibility = 'hidden';
+    liters.innerText = `Full!`;
+    remained.style.height = 0;
   } else {
     small.style.visibility = 'visible';
   }
