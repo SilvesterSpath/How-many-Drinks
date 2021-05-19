@@ -3,7 +3,7 @@ const liters = document.getElementById('liters');
 const percentage = document.getElementById('percentage');
 const remained = document.getElementById('remained');
 
-console.log(liters);
+updateBigCup();
 
 smallCups.forEach((i, index) => {
   i.addEventListener('click', () => highlightCups(index));
@@ -17,10 +17,6 @@ function highlightCups(idx) {
   smallCups.forEach((item, idx2) => {
     if (idx2 <= idx) {
       item.classList.add('full');
-      percentage.innerText = `${(idx + 1) * 12.5}%`;
-      percentage.style.height = `${(idx + 1) * 35}px`;
-      liters.innerText = `${2 - (idx + 1) * 0.25}L`;
-      percentage.style.visibility = 'visible';
 
       console.log(item.className);
     } else {
@@ -28,10 +24,22 @@ function highlightCups(idx) {
     }
   });
 
-  if (!smallCups[0].classList.contains('full')) {
-    percentage.innerText = null;
-    percentage.style.height = `0px`;
-    liters.innerText = `2L`;
+  updateBigCup();
+}
+
+function updateBigCup() {
+  const fullCups = document.querySelectorAll('.cup-small.full');
+  const NumberOfFullCups = fullCups.length;
+  console.log(typeof NumberOfFullCups);
+  if (NumberOfFullCups === 0) {
+    //console.log('hidden');
     percentage.style.visibility = 'hidden';
+    percentage.style.height = 0;
+    liters.innerText = `${2}L`;
+  } else {
+    percentage.style.visibility = 'visible';
+    percentage.innerText = `${NumberOfFullCups * 12.5}%`;
+    percentage.style.height = `${NumberOfFullCups * 35}px`;
+    liters.innerText = `${2 - NumberOfFullCups * 0.25}L`;
   }
 }
